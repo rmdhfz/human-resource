@@ -2,22 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Backend extends CI_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+    
 	private function template($data)
 	{
 		$this->load->view('backend/dashboard', $data);
@@ -29,5 +14,93 @@ class Backend extends CI_Controller {
 	public function karyawan()
 	{
 		$this->template(['file' => 'modul/karyawan/index']);
+	}
+	public function datatable()
+	{
+		$this->load->model('model');
+		$this->model->datatable_karyawan();
+	}
+	public function save()
+	{
+		$nama	= $this->input->post('nama');
+		$email  = $this->input->post('email');
+		$jk 	= $this->input->post('jk');
+
+		$data = [
+			'nama'	=> $nama,
+			'email'	=> $email,
+			'jk'	=> $jk
+		];
+
+		$this->load->database();
+		$save = $this->db->insert('karyawan', $data);
+
+		if (!$save) {
+			echo json_encode([
+				'status'	=> false,
+				'msg'		=> 'Gagal simpan data'
+			]);
+		}
+		echo json_encode([
+			'status'	=> true,
+			'msg'		=> 'Berhasil simpan data'
+		]);
+	}
+
+	public function id()
+	{
+		$id = $this->input->post('id');
+
+		$this->load->database();
+		$d = $this->db->query("SELECT");
+	}
+
+	public function edit()
+	{
+		$id = $this->input->post('id');
+
+		$nama	= $this->input->post('nama');
+		$email  = $this->input->post('email');
+		$jk 	= $this->input->post('jk');
+
+		$data = [
+			'nama'	=> $nama,
+			'email'	=> $email,
+			'jk'	=> $jk
+		];
+
+		$this->load->database();
+		$update = $this->db->where('id', $id)->update('karyawan', $data);
+
+		if (!$update) {
+			echo json_encode([
+				'status'	=> false,
+				'msg'		=> 'Gagal update data'
+			]);
+		}
+
+		echo json_encode([
+			'status'	=> true,
+			'msg'		=> 'Berhasil simpan data'
+		]);
+	}
+
+	public function delete()
+	{
+		$id = $this->input->post('id');
+		$this->load->database();
+
+		$delete = $this->db->where('id', $id)->delete('karyawan');
+
+		if (!$delete) {
+			echo json_encode([
+				'status'	=> false,
+				'msg'		=> 'Gagal hapus data'
+			]);
+		}
+		echo json_encode([
+			'status'	=> true,
+			'msg'		=> 'Berhasil hapus data'
+		]);
 	}
 }
