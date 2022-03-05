@@ -6,6 +6,7 @@ class Frontend extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('frontend/login');
+        // $this->load->view('frontend/home');
 	}
 
 	public function proses()
@@ -26,7 +27,7 @@ class Frontend extends CI_Controller {
 	 	// ->num_rows(): jumlah baris
 	 	// ->result(): hasil berupa array object
 	 	// ->result_array(): hasil berupa array
-	 	// ->result_row(): 
+	 	// ->result_row():
 	 	// ->row(): hasil berupa object
 	 	if ($check->num_rows() == 0) {
 	 		http_response_code(404); // data tidak ditemukan

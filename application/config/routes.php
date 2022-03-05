@@ -1,6 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+// Alur CI:
+/*
+    1. routes.php
+    2. controller
+    3. cari index
+    4. baca fungsi didalam index
+    5. cek folder index
+*/
 $route = [
 	'default_controller'	=>	'Frontend',
 	'404_override'			=>	'',
@@ -14,6 +21,5 @@ $route = [
 	'karyawan/save'			=> 'Backend/save',
 	'karyawan/id'			=> 'Backend/id',
 	'karyawan/edit'			=> 'Backend/edit',
-	'karyawan/update'		=> 'Backend/update',
 	'karyawan/delete'		=> 'Backend/delete',
 ];

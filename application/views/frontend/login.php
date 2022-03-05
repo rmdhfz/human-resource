@@ -75,10 +75,11 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		const FormLogin = $("#form-login");
-		FormLogin.submit(function(event) {
-			event.preventDefault();
+        FormLogin.submit(function(event) {
+			event.preventDefault(); // menghilangkan loading
 			const url = "<?= base_url('login/proses');?>",
 				data  = FormLogin.serialize();
+
 			$.post(url, data).done((res,status,xhr) => {
 				console.log(res);
 				console.log(status);

@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Backend extends CI_Controller {
-    
+
 	private function template($data)
 	{
 		$this->load->view('backend/dashboard', $data);
@@ -52,7 +52,16 @@ class Backend extends CI_Controller {
 		$id = $this->input->post('id');
 
 		$this->load->database();
-		$d = $this->db->query("SELECT");
+		$d = $this->db->query("SELECT * FROM karyawan WHERE id = ? LIMIT 1", [$id]);
+        if ($d->num_rows() == 0) {
+            http_response_code(404);
+            return;
+        }
+        json([
+			'status'	=> true,
+			'msg'		=> 'Berhasil',
+            'data'      => $d->row()
+		]);
 	}
 
 	public function edit()
@@ -75,13 +84,13 @@ class Backend extends CI_Controller {
 		if (!$update) {
 			echo json_encode([
 				'status'	=> false,
-				'msg'		=> 'Gagal update data'
+				'msg'		=> 'Gagal edit data'
 			]);
 		}
 
 		echo json_encode([
 			'status'	=> true,
-			'msg'		=> 'Berhasil simpan data'
+			'msg'		=> 'Berhasil edit data'
 		]);
 	}
 
