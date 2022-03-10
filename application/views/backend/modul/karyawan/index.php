@@ -7,7 +7,7 @@
 <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <h1>Data Karyawan</h1>
 
-<button data-bs-toggle="modal" data-bs-target="#modal-karyawan" class="btn btn-flat btn-sm btn-primary">Tambah Karyawan</button>
+<button data-bs-toggle="modal" data-bs-target="#modal-karyawan" class="btn btn-flat btn-sm btn-primary mb-3">Tambah Karyawan</button>
 
 <table id="table-karyawan" class="table table-responsive display">
     <thead>
@@ -29,6 +29,7 @@
         </tr>
     </tfoot>
 </table>
+
 <div id="modal-karyawan" class="modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -64,9 +65,10 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" onclick="$('#sbtkaryawan').click()">Save changes</button>
             </div>
+            <?= form_close()?>
         </div>
     </div>
 </div>

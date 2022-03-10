@@ -16,7 +16,10 @@ $route = [
 	'login/proses'			=>	'Frontend/proses',
 	'dashboard'				=>	'Backend',
 	'karyawan'				=>	'Backend/karyawan',
+	'cuti'					=>	'Backend/cuti',
+
 	'karyawan/datatable'	=>	'Backend/datatable',
+	'cuti/datatable'		=>	'Backend/datatableCuti',
 
 	'karyawan/save'			=> 'Backend/save',
 	'karyawan/id'			=> 'Backend/id',

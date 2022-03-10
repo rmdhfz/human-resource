@@ -7,19 +7,33 @@ class Backend extends CI_Controller {
 	{
 		$this->load->view('backend/dashboard', $data);
 	}
+	
 	public function index()
 	{
 		$this->template(['file' => 'modul/dashboard/index']);
 	}
+
 	public function karyawan()
 	{
 		$this->template(['file' => 'modul/karyawan/index']);
 	}
+
+	public function cuti() {
+		$this->template(['file'=> 'modul/cuti/index']);
+	}
+
 	public function datatable()
 	{
 		$this->load->model('model');
 		$this->model->datatable_karyawan();
+		
 	}
+
+	public function datatableCuti(){
+		$this->load->model('model');
+		$this->model->datatable_cuti();
+	}
+
 	public function save()
 	{
 		$nama	= $this->input->post('nama');
